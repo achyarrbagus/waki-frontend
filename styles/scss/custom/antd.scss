@@ -1,0 +1,118 @@
+$borderColor: #e7e8f3;
+
+.ant-input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  width: 100%;
+  background-color: #f8f8fc;
+  border-radius: 6px;
+  border-color: $borderColor;
+  &.rounded {
+    border-radius: 9999px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.ant-input-group-addon {
+  background-color: $borderColor !important;
+  border-radius: 6px 0 0 6px;
+  border-color: $borderColor;
+}
+
+.ant-select {
+  padding: 0;
+  display: block;
+  width: 100%;
+  .ant-select-selector {
+    border-radius: 6px !important;
+    border: 1px solid $borderColor !important;
+    background-color: #f8f8fc;
+    border-radius: 6px;
+    background-color: #f8f8fc !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    height: auto !important;
+    border-color: $borderColor;
+  }
+  .ant-select-selection-search-input {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    height: 100% !important;
+  }
+}
+
+.ant-upload-picture-card-wrapper {
+  display: inline-block !important;
+  width: auto !important;
+}
+.ant-upload.ant-upload-select-picture-card {
+  margin: 0 !important;
+}
+
+.ant-breadcrumb {
+  font-size: 12px;
+  .ant-breadcrumb-link {
+    color: #e3292b;
+  }
+}
+.ant-breadcrumb > span:last-child {
+  .ant-breadcrumb-link {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.ant-card {
+  &.body-compact {
+    .ant-card-body {
+      padding: 0 !important;
+    }
+  }
+}
+
+.ant-tabs-nav-list {
+  width: 100%;
+}
+
+.ant-tabs-tab {
+  justify-content: center;
+  width: 50%;
+}
+
+.ant-tabs-tab:hover {
+  color: #fd8312;
+}
+
+.ant-tabs-tab-btn:hover {
+  color: #fd8312;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fd8312;
+  font-weight: 700;
+  font-family: "Urbanist";
+  font-style: normal;
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.ant-tabs-ink-bar {
+  background: #fd8312 !important;
+}
+.ant-modal-footer {
+  display: flex;
+  width: 100%;
+}
+.ant-modal-close-x {
+  background: #fd8312 !important;
+  color: #f8f8fc;
+  font-size: 22px;
+  border-radius: 100px;
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  line-height: unset;
+  right: -8px;
+  top: -8px;
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Migraine",
+  "q1": "Have you been diagnosed with migraines by a doctor?",
+  "q2": "Have you ever experienced the current symptoms?",
+  "q3": "Do you have a severe headache now?",
+  "q4": "Do you have a fever above 37.5° C ?",
+  "q5": "Choose your symptoms:",
+  "q6": "Do you have any other symptoms",
+  "q7": "When did the first symptom appear ?",
+  "q8": "How many days do you feel unable to work/go to school?",
+  "risk-desc": "If you have any of the following risks, unfortunately, you will not be able to use our service. If you are in doubt or if you do not understand a question, please answer 'yes' for your safety.",
+  "qr1": "Do you meet one of these exclusion criteria?",
+  "qr2": "Have you ever gotten a sick leave for your current illness?",
+  "qr3": "Do you take certain medicine for more than a month?"
+}

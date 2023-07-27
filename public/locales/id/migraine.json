@@ -1,0 +1,15 @@
+{
+  "title": "Migrain",
+  "q1": "Pernahkah Anda didiagnosis menderita migrain oleh dokter?",
+  "q2": "Pernahkah Anda mengalami gejala saat ini?",
+  "q3": "Apakah Anda sakit kepala parah sekarang? ",
+  "q4": "Apakah Anda demam diatas 37.5° C ?",
+  "q5": "Pilih gejala yang Anda alami :",
+  "q6": "Apakah Anda memiliki gejala lain?",
+  "q7": "Kapan gejala pertama muncul?",
+  "q8": "Berapa hari Anda merasa tidak bisa bekerja/sekolah/kuliah?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab ‘ya’ untuk keamanan Anda.",
+  "qr1": "Apakah Anda memiliki gejala pengecualian berikut:",
+  "qr2": " Anda sudah cuti sakit karena penyakit Anda saat ini?",
+  "qr3": "Apakah Anda mengkonsumsi obat-obatan tertentu sejak lebih dari 1 Bulan?"
+}

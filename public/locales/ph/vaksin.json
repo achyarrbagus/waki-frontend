@@ -1,0 +1,12 @@
+{
+  "title": "Post Vaccination Symptoms",
+  "q1": "Choose your symptoms:",
+  "q2": "Name of vaccine:",
+  "q3": "Date of vaccination:",
+  "q4": "Did the area around injection mark reddening or aches or itchy?",
+  "q5": "Explain other significant symptoms here",
+  "q6": "How many days do you feel unable to work/go to school?",
+  "risk-desc": "If you have any of the following risks, unfortunately, you will not be able to use our service. If you are in doubt or if you do not understand a question, please answer 'yes' for your safety.",
+  "qr1": "Do you meet one or more of these criteria?",
+  "qr2": "Have you taken certain medicines for more than 1 month?"
+}

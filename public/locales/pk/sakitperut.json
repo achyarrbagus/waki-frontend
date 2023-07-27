@@ -1,0 +1,12 @@
+{
+  "title": "Stomach Ache",
+  "q1": "Do you have a fever above 38.5° C?",
+  "q2": "Choose your symptoms",
+  "q3": "Do you have any other symptoms",
+  "q4": "When did the first symptom appear ?",
+  "q5": "How many days do you feel unable to work/go to school?",
+  "risk-desc": "If you have any of the following risks, unfortunately, you will not be able to use our service. If you are in doubt or if you do not understand a question, please answer 'yes' for your safety.",
+  "qr1": "Do you have any of these symptoms?",
+  "qr2": "Do you meet one of these exclusion criteria?",
+  "qr3": "Do you take certain medicine for more than a month?"
+}

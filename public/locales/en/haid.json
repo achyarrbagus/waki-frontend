@@ -1,0 +1,15 @@
+{
+  "title": "Period Pain",
+  "q1": "Do you have moderate to severe cramp-like pain in the lower abdomen?",
+  "q2": "Choose your symptoms:",
+  "q3": "Do you have any other symptoms?",
+  "q4": "When did the first symptom appear?",
+  "q5": "Do you know the physical cause of your menstrual pain?",
+  "q6": "Are your everyday and professional activities severely disrupted?",
+  "q7": "How many days do you feel unable to work/go to school?",
+  "q8": "Have you ever gotten a sick leave for your current illness?",
+  "risk-desc": "If you have any of the following risks, unfortunately, you will not be able to use our service. If you are in doubt or if you do not understand a question, please answer 'yes' for your safety.",
+  "qr1": "Are you possibly pregnant or was the first day of your last period more than 30 days ago?",
+  "qr2": "Is your blood clotting disrupted or are you taking blood-thinning medication? ",
+  "qr3": "Do you meet one of these exclusion criteria?"
+}

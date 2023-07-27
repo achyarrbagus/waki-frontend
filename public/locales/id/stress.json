@@ -1,0 +1,20 @@
+{
+  "title": "Stress",
+  "q1": "Apakah Anda merasakan stres hebat baru-baru ini dalam pekerjaan atau lingkungan keluarga dan merasakan kelelahan ?",
+  "q2": "Apakah Anda mengalami kesulitan untuk tidur atau tetap tidur dan atau merasa kecapekan di tengah hari dan atau Anda bangun pagi terlalu cepat ?",
+  "q3": "Apakah Anda tidak dapat pulih dari beban kerja Anda di hari libur ?",
+  "q4": "Dapatkah Anda berkonsentrasi dan/atau merasa kesal ?",
+  "q5": "Apakah Anda memiliki gejala yang lain?",
+  "q6": "Kapan gejala pertama muncul ?",
+  "q7": "Berapa hari Anda merasa tidak bisa bekerja/sekolah/kuliah ?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab 'ya' untuk keamanan Anda.",
+  "qr1": "Apakah Anda memiliki motivasi, kekuatan atau kebahagiaan ?",
+  "qr2": "Apakah Anda merasa depresi dalam kehidupan ?",
+  "qr3": "Apakah Anda demam diatas 38° C ?",
+  "qr4": "Apakah Anda mengalami gangguan sirkulasi atau napas pendek ?",
+  "qr5": "Apakah Anda merasakan nyeri ?",
+  "qr6": "Apakah Anda memiliki serangan panik ?",
+  "qr7": "Apakah Anda lelah dengan kehidupan ?",
+  "qr8": "Apakah Anda memenuhi salah satu kriteria pengecualian ini?",
+  "qr9": "Apakah Anda mengkonsumsi obat-obatan tertentu sejak lebih dari 1 Bulan ?"
+}

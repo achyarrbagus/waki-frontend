@@ -1,0 +1,18 @@
+{
+  "title": "Kandung Kemih",
+  "q1": "Apakah Anda wanita ?",
+  "q2": "Anda merasa nyeri saat buang air kecil ?",
+  "q3": "Apakah frekuensi buang air kecil Anda bertambah ?",
+  "q4": "Apakah Anda demam diatas 37.5˚ C ?",
+  "q5": "Apakah Anda tidak dapat buang air kecil ?",
+  "q6": "Apakah Anda hamil ?",
+  "q7": "Pilih gejala yang Anda alami",
+  "q8": "Apakah Anda memiliki gejala lain?",
+  "q9": "Kapan gejala pertama muncul ?",
+  "q10": "Berapa hari Anda merasa tidak bisa bekerja/sekolah/kuliah?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab ‘ya’ untuk keamanan Anda.",
+  "qr1": "Apakah Anda memiliki gejala-gejala ini?",
+  "qr2": "Apakah Anda memenuhi salah satu kriteria pengecualian ini?",
+  "qr3": "Apakah Anda mengkonsumsi obat-obatan tertentu sejak lebih dari 1 Bulan?",
+  "qr3-2": "Jika ‘Ya’ masukkan nama obat disini"
+}

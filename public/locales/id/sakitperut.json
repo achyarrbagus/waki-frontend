@@ -1,0 +1,12 @@
+{
+  "title": "Sakit Perut",
+  "q1": "Apakah Anda demam diatas 38.5˚ C ?",
+  "q2": "Pilih gejala yang Anda alami",
+  "q3": "Apakah Anda memiliki gejala lain?",
+  "q4": "Kapan gejala pertama muncul ?",
+  "q5": "Berapa hari Anda merasa tidak bisa bekerja/sekolah/kuliah?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab ‘ya’ untuk keamanan Anda.",
+  "qr1": "Apakah Anda memiliki gejala-gejala ini?",
+  "qr2": "Apakah Anda memenuhi salah satu kriteria pengecualian ini?",
+  "qr3": "Apakah Anda mengkonsumsi obat-obatan tertentu sejak lebih dari 1 Bulan?"
+}

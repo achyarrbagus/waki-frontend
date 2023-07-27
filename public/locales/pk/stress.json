@@ -1,0 +1,20 @@
+{
+  "title": "Stress",
+  "q1": "Do you currently have a lot of stress in your professional or family environment and feel exhausted?",
+  "q2": "Do you have trouble sleeping or staying asleep and/or daytime tiredness and/or do you wake up very early?",
+  "q3": "Are you no longer recovering from your workload on days off?",
+  "q4": "Can you no longer concentrate and/or feel irritated?",
+  "q5": "Do you have any other symptoms?",
+  "q6": "When did the first symptom appear ?",
+  "q7": "How many days do you feel unable to work/go to school?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab 'ya' untuk keamanan Anda.",
+  "qr1": "Do you have motivation, strength, or joy?",
+  "qr2": "Have you had a depressive illness in your life?",
+  "qr3": "Do you have a fever above 38° C ?",
+  "qr4": "Do you have circulatory problems or shortness of breath?",
+  "qr5": "Do you have pain?",
+  "qr6": "Do you have panic attacks?",
+  "qr7": "Do you have life-tired thoughts?",
+  "qr8": "Do you have one or more of the following criteria?",
+  "qr9": "Do you take certain medicine for more than a month?"
+}

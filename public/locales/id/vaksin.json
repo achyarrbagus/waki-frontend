@@ -1,0 +1,12 @@
+{
+  "title": "Keluhan Setelah Vaksin",
+  "q1": "Pilih gejala yang Anda alami :",
+  "q2": "Nama vaksin :",
+  "q3": "Tanggal mendapatkan vaksinasi :",
+  "q4": "Kemerahan/nyeri/gatal di area bekas suntikan ?",
+  "q5": "Gejala lain yang signifikan? Jelaskan disini",
+  "q6": "Berapa hari Anda merasa tidak bisa bekerja/sekolah/kuliah?",
+  "risk-desc": "Jika Anda memiliki resiko berikut, Anda tidak dapat menggunakan  pelayanan kami. Jika Anda ragu atau tidak mengerti pertanyaan, silahkan jawab ’ya’ untuk keamanan Anda.",
+  "qr1": "Apakah Anda memiliki salah satu atau lebih dari kriteria berikut ?",
+  "qr2": "Apakah Anda mengkonsumsi obat-obatan tertentu sejak lebih dari 1 bulan ?"
+}

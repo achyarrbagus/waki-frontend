@@ -1,0 +1,11 @@
+{
+  "title": "Cold",
+  "q1": "Choose your symptoms",
+  "q2": "Do you have any other symptoms",
+  "q3": "When did the first symptom appear ?",
+  "q4": "How many days do you feel unable to work/go to school?",
+  "q4-2": "*Doctor will be considering your request",
+  "q5": "Have you ever gotten a sick leave for your current illness?",
+  "qr1": "Do you have one or more of the following criteria?",
+  "qr2": "Do you take certain medicine for more than a month?"
+}

@@ -1,0 +1,344 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: #f7f7f7;
+  font-family: "Urbanist", sans-serif;
+}
+
+.max-w-layout {
+  max-width: 480px;
+}
+
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  &:hover {
+    color: inherit;
+  }
+
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.article {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1em;
+  }
+}
+
+.main-wrapper {
+  height: 60vh;
+  margin: 10px 50px;
+  filter: drop-shadow(-1px 5px 3px #ccc);
+}
+
+.info-wrapper {
+  margin-top: 15px;
+}
+
+.map-details {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.map-details span {
+  font-weight: bold;
+}
+
+.search-input {
+  font-size: 1.2em;
+  width: 80%;
+}
+
+.css-1rhbuit-multiValue {
+  background-color: #00baba !important;
+  color: #ffffff !important;
+  border-radius: 100px !important;
+}
+
+.css-1rhbuit-multiValue .css-12jo7m5 {
+  padding-left: 10px !important;
+  color: #ffffff !important;
+}
+
+.bg-letter {
+  background-image: url("/images/letter/bg-surat.png");
+  background-size: 480px 600px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  max-width: 480px;
+  height: 100%;
+  max-height: 680px;
+  padding: 0px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.bg-letter-id {
+  background-image: url("/images/letter/bg-id.jpeg");
+  background-size: 100% 600px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  max-width: 480px;
+  height: 100%;
+  max-height: 680px;
+  padding: 0px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.bg-letter-en {
+  background-image: url("/images/letter/bg-en.jpeg");
+  background-size: 100% 600px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  max-width: 480px;
+  height: 100%;
+  max-height: 680px;
+  padding: 0px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.text_header {
+  padding-top: 110px;
+  font-size: 14px;
+  text-align: center;
+  color: #4a4b4d;
+  font-family: source-sans-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.text_header-2 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 40px;
+  padding-top: 20px;
+  max-width: 85%;
+}
+
+.text-name-doctor {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 40px;
+  max-width: 85%;
+}
+
+.text_header-3 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 40px;
+  padding-top: 10px;
+  max-width: 85%;
+}
+
+.table-patient {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 90px;
+  max-width: 85%;
+}
+
+.table-patient tr td {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.text_header-4 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 40px;
+  max-width: 85%;
+}
+
+.text_header-5 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 100px;
+  max-width: 85%;
+}
+
+.text_header-6 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 100px;
+  max-width: 85%;
+}
+
+.text_header-7 {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+  padding-left: 40px;
+  max-width: 85%;
+}
+
+.date {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+}
+
+.date-doc {
+  font-size: 11px;
+  font-family: source-sans-pro, sans-serif;
+  font-style: normal;
+}
+
+.img-ttd {
+}
+
+.ttd {
+  text-align: center;
+  float: right;
+  margin-right: 80px;
+  padding-top: 40px;
+}
+
+.px-3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sendbird-chat-header__right__info {
+  display: none !important;
+}
+
+.sendbird-fileviewer__header__left {
+  display: none !important;
+}
+
+.sendbird-fileviewer__header__right {
+  justify-content: flex-start !important;
+}
+
+.sendbird-conversation__footer {
+  position: fixed;
+  bottom: 0;
+  max-width: 478px;
+}
+
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font:
+    400 18px Roboto,
+    Arial,
+    sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+}
+
+.custom-map-control-button:hover {
+  background: rgb(235, 235, 235);
+}
+
+.text-map-control {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 10px;
+  font:
+    400 18px Roboto,
+    Arial,
+    sans-serif;
+  overflow: hidden;
+  height: 100px;
+  cursor: pointer;
+}
+
+.pac-card {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font:
+    400 18px Roboto,
+    Arial,
+    sans-serif;
+  overflow: hidden;
+  font-family: Roboto;
+  padding: 0;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.pac-div {
+  width: 100%;
+  left: unset !important;
+}
+
+.pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 70%;
+  height: 40px;
+  margin-top: 65px;
+  margin-right: auto;
+  margin-left: 15%;
+  border: 2px solid#FF9A3D;
+  border-radius: 3px;
+}
+
+.pac-input:focus {
+  border-color: #fd8312;
+}
+
+.bg-theme {
+  background-color: #eaefff;
+}
+.border-theme {
+  border-color: #eaefff;
+}

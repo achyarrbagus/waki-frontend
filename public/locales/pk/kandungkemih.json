@@ -1,0 +1,18 @@
+{
+  "title": "Bladder Infection",
+  "q1": "Are you a woman?",
+  "q2": "Do you have burning or stinging pain when urinating?",
+  "q3": "Do you need to urinate frequently?",
+  "q4": "Do you have a fever above 37.5 ° C?",
+  "q5": "Are you unable to urinate?",
+  "q6": "Could you be pregnant",
+  "q7": "Choose your symptoms",
+  "q8": "Do you have any other symptoms",
+  "q9": "When did the first symptom appear ?",
+  "q10": "How many days do you feel unable to work/go to school?",
+  "risk-desc": "If you have any of the following risks, unfortunately, you will not be able to use our service. If you are in doubt or if you do not understand a question, please answer 'yes' for your safety.",
+  "qr1": "Do you have any of these symptoms?",
+  "qr2": "Do you meet one of these exclusion criteria?",
+  "qr3": "Do you take certain medicine for more than a month?",
+  "qr3-2": "If 'Yes' enter the name of the medicine here"
+}
