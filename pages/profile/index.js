@@ -397,14 +397,14 @@ export default function Pofile() {
             <Spin />
           </div>
         ) : ( */}
-            <Link href={"/daftar_vaksin"}>
+            {/* <Link href={"/daftar_vaksin"}>
               <button
                 type="submit"
                 className="bg-secondary-500 text-white font-bold block w-full text-center text-sm p-3 rounded-full"
               >
                 Daftar Vaksin
               </button>
-            </Link>
+            </Link> */}
             {/* )} */}
           </div>
         </div>
