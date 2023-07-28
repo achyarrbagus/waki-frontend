@@ -219,7 +219,7 @@ export default function Pofile() {
             key={index} // Memberikan key untuk setiap elemen yang dihasilkan oleh map
             className="flex justify-between flex-row w-full p-2 border-solid border-2 border-theme rounded-lg mt-2 bg-theme"
           >
-            <div className="mx-4 my-2 font-bold">{"<"} {item[0]?.age} bulan</div>
+            <div className="mx-4 my-2 font-bold">{item[0]?.age} bulan</div>
             <div className="flex flex-col mx-4">
               {item.map((item2, index2) => (
                 <div key={item2.namevaksin} className="px-6 my-2 text-secondary-500 font-bold">
