@@ -343,7 +343,7 @@ export default function Pofile() {
               <Tabs.TabPane tab="Vaksin" key="1">
                 <div className="flex flex-col">
                   <div className="flex flex-row">
-                    <Link href="#">
+                    <div>
                       <a className="h-full text-center -top-6">
                         <div className="text-grey-800 rounded-full border-2 border-theme cursor-pointer px-4 py-3 m-2 hover:bg-secondary-500 hover:text-gray-100">
                           <p onClick={() => handleSwipVaksin(kids?.vaksin, "Belum", vaksin)} className="text-lg font-bold">
@@ -351,8 +351,8 @@ export default function Pofile() {
                           </p>
                         </div>
                       </a>
-                    </Link>
-                    <Link href="">
+                    </div>
+                    <div>
                       <a className="h-full text-center -top-6">
                         <div className="text-grey-800 rounded-full border-2 border-theme cursor-pointer px-4 py-3 m-2 hover:bg-secondary-500 hover:text-gray-100">
                           <p onClick={() => handleSwipVaksin(kids?.vaksin, "Sudah", vaksin)} className="text-lg font-bold">
@@ -360,8 +360,8 @@ export default function Pofile() {
                           </p>
                         </div>
                       </a>
-                    </Link>
-                    <Link href="">
+                    </div>
+                    <div>
                       <a className="h-full text-center -top-6">
                         <div className="text-grey-800 rounded-full border-2 border-theme cursor-pointer px-4 py-3 m-2 hover:bg-secondary-500 hover:text-gray-100">
                           <p onClick={() => handleSwipVaksin(kids?.vaksin, "Semua", vaksin)} className="text-lg font-bold">
@@ -369,7 +369,7 @@ export default function Pofile() {
                           </p>
                         </div>
                       </a>
-                    </Link>
+                    </div>
                   </div>
                   <div className="flex flex-col">
                     <p className="text-2xl font-bold mb-2">Riwayat Vaksin Anak</p>
