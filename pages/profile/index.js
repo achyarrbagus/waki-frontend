@@ -186,7 +186,7 @@ export default function Pofile() {
       return "belum";
     } else {
       setIsVaksin(vaksins);
-      setStatusVaksin("");
+      setStatusVaksin("semua");
       return "semua";
     }
   };
@@ -208,10 +208,68 @@ export default function Pofile() {
     return Object.values(groupedByAge);
   }
 
-  const HistoryVaksin = ({ data }) => {
-    const groupedData = groupDataByAge(data);
+  const HistoryVaksin = ({ data,vaksinAnak }) => {
 
-    groupedData.map((item) => console.log(item));
+    if (statusVaksin === "semua"){
+      let result = []
+      let resp = data.filter((element) => !vaksinAnak?.some((obj) => obj.id === element.id));
+
+      resp.map((item)=>{
+        let obj = {
+          namevaksin:item?.namevaksin,
+          status:"belum",
+          age:item?.age
+        }
+        result.push(obj)
+      })
+
+       vaksinAnak.map((item)=>{
+        let obj = {
+          namevaksin:item?.namevaksin,
+          status:"sudah",
+          age:item?.age
+        }
+        result.push(obj)
+      })
+       const groupedData = groupDataByAge(result);
+       return(
+        <>
+        {groupedData.map((item, index) => (
+          <div
+            key={index} // Memberikan key untuk setiap elemen yang dihasilkan oleh map
+            className="flex justify-between flex-row w-full p-2 border-solid border-2 border-theme rounded-lg mt-2 bg-theme"
+          >
+            <div className="mx-4 my-2 font-bold">{item[0]?.age} bulan</div>
+            <div className="flex flex-col mx-4">
+              {item.map((item2, index2) => (
+                <div key={item2.namevaksin} className="px-6 my-2 text-secondary-500 font-bold">
+                  {item2?.namevaksin}
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col mx-4">
+              {item.map((item, index) => (
+
+                 <div
+           key={index}
+             className={
+             item.status === "belum"
+             ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
+             : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
+              }
+             >
+              {item.status}
+                 </div>
+
+              ))}
+            </div>
+          </div>
+        ))}
+        </>
+       )
+      }
+  
+    const groupedData = groupDataByAge(data);
     return (
       <>
         {groupedData.map((item, index) => (
@@ -229,9 +287,18 @@ export default function Pofile() {
             </div>
             <div className="flex flex-col mx-4">
               {item.map((item, index) => (
-                <div key={index} className="text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold">
-                  {statusVaksin}
-                </div>
+
+                 <div
+           key={index}
+             className={
+             statusVaksin === "belum"
+             ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
+             : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
+              }
+             >
+              {statusVaksin}
+                 </div>
+
               ))}
             </div>
           </div>
@@ -373,7 +440,7 @@ export default function Pofile() {
                   </div>
                   <div className="flex flex-col">
                     <p className="text-2xl font-bold mb-2">Riwayat Vaksin Anak</p>
-                    <HistoryVaksin data={isVaksin} />
+                    <HistoryVaksin data={isVaksin} vaksinAnak={kids?.vaksin} />
                   </div>
                 </div>
               </Tabs.TabPane>
@@ -397,14 +464,14 @@ export default function Pofile() {
             <Spin />
           </div>
         ) : ( */}
-            {/* <Link href={"/daftar_vaksin"}>
+            <Link href={"/daftar_vaksin"}>
               <button
                 type="submit"
                 className="bg-secondary-500 text-white font-bold block w-full text-center text-sm p-3 rounded-full"
               >
                 Daftar Vaksin
               </button>
-            </Link> */}
+            </Link>
             {/* )} */}
           </div>
         </div>
