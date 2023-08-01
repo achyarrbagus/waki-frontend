@@ -42,6 +42,8 @@ export default function Pofile() {
   const [anak,setAnak] = useState(1)
   const { Option } = Select;
   const router = useRouter();
+  const [selectedData, setSelectedData] = useState([]);
+
 
 
   const userId = router.query.user;
@@ -90,8 +92,29 @@ export default function Pofile() {
   const onSubmitForm = async (values) => {
     console.log(values)
     // console.log(data.anak)
+    console.log(selectedData)
+    
     // console.log(vaksin)
-  
+   const request = {
+   username: "achyar bagus",
+  phone: "085156710644",
+  address: "kavling tanah tinggi",
+  time: "siang",
+  schedule: values.dateofbirth, 
+  otp: "6071",
+  vaksinasi_anak: [
+    {
+      name_kids: "jamal",
+      vaksin_name: "Campak",
+    },
+    {
+      name_kids: "lucy",
+      vaksin_name: "Campak",
+    },
+  ],
+};
+console.log(request)
+
 
     // var phone = t("phone_code") + values.phone;
     // var dt = {
@@ -131,18 +154,15 @@ export default function Pofile() {
 
 
   const [selectedVaksin, setSelectedVaksin] = useState();
-  const SelectComponentVaksin = ({ vaksin,index, onVaksinChange }) => {
-  let vlv = ""
+  const SelectComponentVaksin = ({ vaksin,index, onVaksinChange,vg }) => {
 
 
   const handleVaksinChange = (value) => {
-      setSelectedVaksin(value);
-      onVaksinChange(index, value);     
-   };
-
-  return (
+      onVaksinChange(index, value);
+    };    
+  return vg && (
     <Select
-      value={selectedVaksin}
+      value={vg[index]?.vaksin}
       placeholder="select one vaksin"
       className="select-after"
       onChange={handleVaksinChange}
@@ -158,34 +178,26 @@ export default function Pofile() {
     </Select>
   );
 };
-console.log(selectedVaksin,"ini vaksin")
+
 
 const getValue = (param) =>{
   return param
 }
 
-const SelectComponentName = ({ data, index, onNameChange }) => {
-  const [selectedName, setSelectedName] = useState(""); 
-  const [vln, setVln] = useState();
-  let nama = ""
-
-
+const SelectComponentName = ({ data, index, onNameChange,vg }) => {
   const handleNameChange =(value) => {
     onNameChange(index, value);
-    setVln(index)
   };
-  console.log(vln,"ini bagian sini")
-  console.log(nama)
-  return (
+  return vg && (
     <div>
       <Select
-        value={nama}
+        value={vg[index]?.name}
         placeholder="select kids name"
         onChange={handleNameChange}
         className="select-after"
       >
         {data &&
-          data?.anak.map((item) => {
+          data?.anak.map((item,index) => {
             return(
               <>
               <Option value={item.name}>{item.name}</Option>;
@@ -197,7 +209,6 @@ const SelectComponentName = ({ data, index, onNameChange }) => {
   );
 };
 
-const [selectedData, setSelectedData] = useState([]);
 
   const handleNameChange = (index, name) => {
     const newData = [...selectedData];
@@ -210,11 +221,7 @@ const [selectedData, setSelectedData] = useState([]);
     newData[index] = { ...(newData[index] || {}), vaksin };
     setSelectedData(newData);
   };
-  console.log(selectedData)
-
-
-
-
+console.log(selectedData)
   return (
     <>
       <Layout title="Profile" back="/">
@@ -382,13 +389,13 @@ const [selectedData, setSelectedData] = useState([]);
             <label className="block mb-1 font-bold text-gray-700 text-sm">
               Nama Anak {index + 1}
             </label>
-            <SelectComponentName data={data} index={index} onNameChange={handleNameChange} />
+            <SelectComponentName vg={selectedData} data={data} index={index} onNameChange={handleNameChange} />
           </div>
           <div className="mb-5">
             <label className="block mb-1 font-bold text-gray-700 text-sm">
               Jenis Vaksin
             </label>
-           <SelectComponentVaksin vaksin={vaksin} index={index} onVaksinChange={handleVaksinChange}/>
+           <SelectComponentVaksin vg={selectedData} vaksin={vaksin} index={index} onVaksinChange={handleVaksinChange}/>
           </div>
         </div>
       ))}         
