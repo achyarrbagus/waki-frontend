@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import Footer from "@/components/Footer";
@@ -14,7 +15,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import axios from "axios";
 import moment from "moment";
-import OtpModal from "@/components/OtpVerification/OtpModal"
+import OtpModal from "@/components/OtpVerification/OtpModal";
 
 export async function getStaticProps({ locale }) {
   return {
@@ -36,9 +37,9 @@ export default function Pofile() {
   const [isVaksin, setIsVaksin] = useState();
   const [vaksin, setVaksin] = useState([]);
   const [statusVaksin, setStatusVaksin] = useState("");
-  const [form,setForm]= useState()
-  const [otpModal,setOtpModal] = useState(false)
-  const [resp,setResp]=useState(false)
+  const [form, setForm] = useState();
+  const [otpModal, setOtpModal] = useState(false);
+  const [resp, setResp] = useState(false);
 
   useEffect(() => {
     // onInit();
@@ -122,7 +123,6 @@ export default function Pofile() {
     },
   ];
 
-  
   // const dataSource = [
   //   {
   //     key: "1,
@@ -134,29 +134,30 @@ export default function Pofile() {
   //   },
   // ];
 
-  let prevIndex = -1
-  const dataSource = kids && kids.anak_tumbuh_kembangs && Array.isArray(kids.anak_tumbuh_kembangs)
-  ? kids.anak_tumbuh_kembangs.map((item, index) => {
-      const prevItem = prevIndex >= 0 ? kids.anak_tumbuh_kembangs[prevIndex] : null; // Access the previous item using the previous index
-      prevIndex = index; // Update the previous index for the next iteration
-      console.log(kids.dateofbirth,"ini kids")
+  let prevIndex = -1;
+  const dataSource =
+    kids && kids.anak_tumbuh_kembangs && Array.isArray(kids.anak_tumbuh_kembangs)
+      ? kids.anak_tumbuh_kembangs.map((item, index) => {
+          const prevItem = prevIndex >= 0 ? kids.anak_tumbuh_kembangs[prevIndex] : null; // Access the previous item using the previous index
+          prevIndex = index; // Update the previous index for the next iteration
+          console.log(kids.dateofbirth, "ini kids");
 
-      const endDate = item.created_at.toString().split("T")[0];
-      const startDate = kids.dateofbirth;
+          const endDate = item.created_at.toString().split("T")[0];
+          const startDate = kids.dateofbirth;
 
-      const startMoment = moment(startDate, "DD-MM-YYYY");
-      const endMoment = moment(endDate, "YYYY-MM-DD");
-      const diffInMonths = endMoment.diff(startMoment, "months");
-      return {
-        key: index+1,
-        bulan: diffInMonths,
-        tinggi_bdn: `${prevItem ? prevItem.tinggi_badan : ""} ${prevItem ? "-" : ""} ${item.tinggi_badan} cm`,
-        berat_bdn: `${prevItem ? prevItem.berat_badan : ""} ${prevItem ? "-" : ""} ${item.berat_badan} kg`,
-        ling_kepala: `${prevItem ? prevItem.lingkar_kepala  : ""} ${prevItem ? "-" : ""} ${item.lingkar_kepala} cm`,
-        tgl_submit: `${item.created_at.toString().split("T")[0]}`,
-      };
-    })
-  : [];
+          const startMoment = moment(startDate, "DD-MM-YYYY");
+          const endMoment = moment(endDate, "YYYY-MM-DD");
+          const diffInMonths = endMoment.diff(startMoment, "months");
+          return {
+            key: index + 1,
+            bulan: diffInMonths,
+            tinggi_bdn: `${prevItem ? prevItem.tinggi_badan : ""} ${prevItem ? "-" : ""} ${item.tinggi_badan} cm`,
+            berat_bdn: `${prevItem ? prevItem.berat_badan : ""} ${prevItem ? "-" : ""} ${item.berat_badan} kg`,
+            ling_kepala: `${prevItem ? prevItem.lingkar_kepala : ""} ${prevItem ? "-" : ""} ${item.lingkar_kepala} cm`,
+            tgl_submit: `${item.created_at.toString().split("T")[0]}`,
+          };
+        })
+      : [];
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -165,15 +166,15 @@ export default function Pofile() {
   const handleOtp = async () => {
     try {
       const response = await fetch(`http://localhost:5000/api/v1/login-phone/?phone=${data.phone}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: null,
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send POST request');
+        throw new Error("Failed to send POST request");
       }
 
       const responseData = await response.json();
@@ -184,20 +185,20 @@ export default function Pofile() {
   };
 
   const handleOk = () => {
-    console.log(kids)
-    let tinggiBadan = document.getElementById("tinggiBadan").value
-    let beratBadan = document.getElementById("beratBadan").value
-    let lingkarKepala = document.getElementById("lingkarKepala").value
+    console.log(kids);
+    let tinggiBadan = document.getElementById("tinggiBadan").value;
+    let beratBadan = document.getElementById("beratBadan").value;
+    let lingkarKepala = document.getElementById("lingkarKepala").value;
     setForm({
-      phone:data?.phone,
-      anak_id:kids?.id,
-      tinggi_badan:tinggiBadan,
-      berat_badan:beratBadan,
-      lingkar_kepala:lingkarKepala
-    })
-    handleOtp()
+      phone: data?.phone,
+      anak_id: kids?.id,
+      tinggi_badan: tinggiBadan,
+      berat_badan: beratBadan,
+      lingkar_kepala: lingkarKepala,
+    });
+    handleOtp();
     setIsModalOpen(false);
-    setOtpModal(true)
+    setOtpModal(true);
   };
 
   const handleCancel = () => {
@@ -296,8 +297,8 @@ export default function Pofile() {
       const groupedData = groupDataByAge(result);
 
       const queryData = {
-      key1: 'value1', // Ganti dengan data yang ingin Anda kirimkan
-      key2: 'value2',
+        key1: "value1", // Ganti dengan data yang ingin Anda kirimkan
+        key2: "value2",
       };
 
       return (
@@ -444,31 +445,31 @@ export default function Pofile() {
               <div className="basis-2/6">
                 <div className="text-center my-2 ml-2 border-r-2 border-theme">
                   <p>Tinggi Badan</p>
-                <p className="mt-2">
-                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
-                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].tinggi_badan} ${"\u00A0"}cm`
-                : 0}
-                </p>
+                  <p className="mt-2">
+                    {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                      ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].tinggi_badan} ${"\u00A0"}cm`
+                      : 0}
+                  </p>
                 </div>
               </div>
               <div className="basis-2/6">
                 <div className="text-center my-2 border-r-2 border-theme">
                   <p>Berat Badan</p>
                   <p className="mt-2">
-                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
-                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].berat_badan} ${"\u00A0"}kg`
-                : 0}
-                </p>
+                    {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                      ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].berat_badan} ${"\u00A0"}kg`
+                      : 0}
+                  </p>
                 </div>
               </div>
               <div className="basis-2/6">
                 <div className="text-center my-2">
                   <p>Lingkar Kepala</p>
                   <p className="mt-2">
-                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
-                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].lingkar_kepala} ${"\u00A0"}cm`
-                : 0}
-                </p>
+                    {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                      ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].lingkar_kepala} ${"\u00A0"}cm`
+                      : 0}
+                  </p>
                 </div>
               </div>
             </div>
@@ -581,7 +582,14 @@ export default function Pofile() {
                 <p>Tinggi Badan</p>
                 <div className="mt-2">
                   <form>
-                    <input type="number" id="tinggiBadan" name="tinggiBadan" className="focus:ring-blue-500 w-20" placeholder="160 cm" required/>
+                    <input
+                      type="number"
+                      id="tinggiBadan"
+                      name="tinggiBadan"
+                      className="focus:ring-blue-500 w-20"
+                      placeholder="160 cm"
+                      required
+                    />
                   </form>
                 </div>
               </div>
@@ -591,7 +599,14 @@ export default function Pofile() {
                 <p>Berat Badan</p>
                 <div className="mt-2">
                   <form>
-                    <input type="number" id="beratBadan" name="beratBadan" className="focus:ring-blue-500 w-20" placeholder="10 kg" required/>
+                    <input
+                      type="number"
+                      id="beratBadan"
+                      name="beratBadan"
+                      className="focus:ring-blue-500 w-20"
+                      placeholder="10 kg"
+                      required
+                    />
                   </form>
                 </div>
               </div>
@@ -601,7 +616,14 @@ export default function Pofile() {
                 <p>Lingkar Kepala</p>
                 <div className="mt-2">
                   <form>
-                    <input type="number" id="lingkarKepala" name="lingkarKepala" className="focus:ring-blue-500 w-20" placeholder="56 cm" required/>
+                    <input
+                      type="number"
+                      id="lingkarKepala"
+                      name="lingkarKepala"
+                      className="focus:ring-blue-500 w-20"
+                      placeholder="56 cm"
+                      required
+                    />
                   </form>
                 </div>
               </div>
@@ -613,7 +635,13 @@ export default function Pofile() {
         </Modal>
         <Footer />
       </Layout>
-      <OtpModal data={data} visible={otpModal} form={form} setVisible={()=>setOtpModal(false)} fecthUser={()=>fetchUser(query)} />
+      <OtpModal
+        data={data}
+        visible={otpModal}
+        form={form}
+        setVisible={() => setOtpModal(false)}
+        fecthUser={() => fetchUser(query)}
+      />
     </>
   );
 }

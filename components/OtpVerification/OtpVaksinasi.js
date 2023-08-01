@@ -4,9 +4,10 @@ import react from "react";
 import { useState } from "react";
 import axios from "axios";
 
-const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
+const OtpVaksinasi = ({ visible, setVisible, form, data }) => {
   const cooldownTime = 120000;
   const [cooldown, setCooldown] = useState(false);
+  const [response, setResponse] = useState();
 
   const resendCode = async () => {
     if (cooldown) {
@@ -52,23 +53,23 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
     let otp2 = document.getElementById("otp2").value;
     let otp3 = document.getElementById("otp3").value;
     let otp4 = document.getElementById("otp4").value;
-
-    let dataRequest = {
-      phone: data.phone,
-      anak_id: form.anak_id,
-      tinggi_badan: form.tinggi_badan,
-      berat_badan: form.berat_badan,
-      lingkar_kepala: form.lingkar_kepala,
+    const request = {
+      username: form.username,
+      user_phone: data?.phone,
+      phone: String(form.phone),
+      address: form.address,
+      time: form.time,
+      schedule: form.schedule,
       otp: otp1 + otp2 + otp3 + otp4,
+      vaksinasi_anak: form.vaksinasi_anak,
     };
-
     try {
-      const response = await fetch("http://localhost:5000/api/v1/tumbuh-kembang", {
+      const response = await fetch("http://localhost:5000/api/v1/vaksinasi", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataRequest),
+        body: JSON.stringify(request),
       });
 
       if (!response.ok) {
@@ -78,7 +79,7 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
       }
 
       const responseData = await response.json();
-      await fecthUser();
+      setResponse(responseData);
       window.alert("Updated Data success");
       setVisible(false);
 
@@ -182,4 +183,4 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
   );
 };
 
-export default OtpModal;
+export default OtpVaksinasi;
