@@ -9,10 +9,12 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Skeleton from "react-loading-skeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Table, Tabs, Modal, Button } from "antd";
+import { Table, Tabs, Modal, Button, Form } from "antd";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import axios from "axios";
+import moment from "moment";
+import OtpModal from "@/components/OtpVerification/OtpModal"
 
 export async function getStaticProps({ locale }) {
   return {
@@ -34,6 +36,9 @@ export default function Pofile() {
   const [isVaksin, setIsVaksin] = useState();
   const [vaksin, setVaksin] = useState([]);
   const [statusVaksin, setStatusVaksin] = useState("");
+  const [form,setForm]= useState()
+  const [otpModal,setOtpModal] = useState(false)
+  const [resp,setResp]=useState(false)
 
   useEffect(() => {
     // onInit();
@@ -117,24 +122,82 @@ export default function Pofile() {
     },
   ];
 
-  const dataSource = [
-    {
-      key: "1",
-      bulan: "0",
-      tinggi_bdn: "46.3 - 53.4",
-      berat_bdn: "2.5 - 4.3",
-      ling_kepala: "32.1 - 36.9",
-      tgl_submit: "Update",
-    },
-  ];
+  
+  // const dataSource = [
+  //   {
+  //     key: "1,
+  //     bulan: "0",
+  //     tinggi_bdn: "46.3 - 53.4",
+  //     berat_bdn: "2.5 - 4.3",
+  //     ling_kepala: "32.1 - 36.9",
+  //     tgl_submit: "Update",
+  //   },
+  // ];
+
+  let prevIndex = -1
+  const dataSource = kids && kids.anak_tumbuh_kembangs && Array.isArray(kids.anak_tumbuh_kembangs)
+  ? kids.anak_tumbuh_kembangs.map((item, index) => {
+      const prevItem = prevIndex >= 0 ? kids.anak_tumbuh_kembangs[prevIndex] : null; // Access the previous item using the previous index
+      prevIndex = index; // Update the previous index for the next iteration
+      console.log(kids.dateofbirth,"ini kids")
+
+      const endDate = item.created_at.toString().split("T")[0];
+      const startDate = kids.dateofbirth;
+
+      const startMoment = moment(startDate, "DD-MM-YYYY");
+      const endMoment = moment(endDate, "YYYY-MM-DD");
+      const diffInMonths = endMoment.diff(startMoment, "months");
+      return {
+        key: index+1,
+        bulan: diffInMonths,
+        tinggi_bdn: `${prevItem ? prevItem.tinggi_badan : ""} ${prevItem ? "-" : ""} ${item.tinggi_badan} cm`,
+        berat_bdn: `${prevItem ? prevItem.berat_badan : ""} ${prevItem ? "-" : ""} ${item.berat_badan} kg`,
+        ling_kepala: `${prevItem ? prevItem.lingkar_kepala  : ""} ${prevItem ? "-" : ""} ${item.lingkar_kepala} cm`,
+        tgl_submit: `${item.created_at.toString().split("T")[0]}`,
+      };
+    })
+  : [];
 
   const showModal = () => {
     setIsModalOpen(true);
-    console.log(isModalOpen);
+  };
+
+  const handleOtp = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/v1/login-phone/?phone=${data.phone}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: null,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send POST request');
+      }
+
+      const responseData = await response.json();
+      setResp(responseData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleOk = () => {
+    console.log(kids)
+    let tinggiBadan = document.getElementById("tinggiBadan").value
+    let beratBadan = document.getElementById("beratBadan").value
+    let lingkarKepala = document.getElementById("lingkarKepala").value
+    setForm({
+      phone:data?.phone,
+      anak_id:kids?.id,
+      tinggi_badan:tinggiBadan,
+      berat_badan:beratBadan,
+      lingkar_kepala:lingkarKepala
+    })
+    handleOtp()
     setIsModalOpen(false);
+    setOtpModal(true)
   };
 
   const handleCancel = () => {
@@ -208,67 +271,70 @@ export default function Pofile() {
     return Object.values(groupedByAge);
   }
 
-  const HistoryVaksin = ({ data,vaksinAnak }) => {
-
-    if (statusVaksin === "semua"){
-      let result = []
+  const HistoryVaksin = ({ data, vaksinAnak }) => {
+    if (statusVaksin === "semua") {
+      let result = [];
       let resp = data.filter((element) => !vaksinAnak?.some((obj) => obj.id === element.id));
 
-      resp.map((item)=>{
+      resp.map((item) => {
         let obj = {
-          namevaksin:item?.namevaksin,
-          status:"belum",
-          age:item?.age
-        }
-        result.push(obj)
-      })
+          namevaksin: item?.namevaksin,
+          status: "belum",
+          age: item?.age,
+        };
+        result.push(obj);
+      });
 
-       vaksinAnak.map((item)=>{
+      vaksinAnak.map((item) => {
         let obj = {
-          namevaksin:item?.namevaksin,
-          status:"sudah",
-          age:item?.age
-        }
-        result.push(obj)
-      })
-       const groupedData = groupDataByAge(result);
-       return(
+          namevaksin: item?.namevaksin,
+          status: "sudah",
+          age: item?.age,
+        };
+        result.push(obj);
+      });
+      const groupedData = groupDataByAge(result);
+
+      const queryData = {
+      key1: 'value1', // Ganti dengan data yang ingin Anda kirimkan
+      key2: 'value2',
+      };
+
+      return (
         <>
-        {groupedData.map((item, index) => (
-          <div
-            key={index} // Memberikan key untuk setiap elemen yang dihasilkan oleh map
-            className="flex justify-between flex-row w-full p-2 border-solid border-2 border-theme rounded-lg mt-2 bg-theme"
-          >
-            <div className="mx-4 my-2 font-bold">{item[0]?.age} bulan</div>
-            <div className="flex flex-col mx-4">
-              {item.map((item2, index2) => (
-                <div key={item2.namevaksin} className="px-6 my-2 text-secondary-500 font-bold">
-                  {item2?.namevaksin}
-                </div>
-              ))}
+          {groupedData.map((item, index) => (
+            <div
+              key={index} // Memberikan key untuk setiap elemen yang dihasilkan oleh map
+              className="flex justify-between flex-row w-full p-2 border-solid border-2 border-theme rounded-lg mt-2 bg-theme"
+            >
+              <div className="mx-4 my-2 font-bold">{item[0]?.age} bulan</div>
+              <div className="flex flex-col mx-4">
+                {item.map((item2, index2) => (
+                  <div key={item2.namevaksin} className="px-6 my-2 text-secondary-500 font-bold">
+                    {item2?.namevaksin}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col mx-4">
+                {item.map((item, index) => (
+                  <div
+                    key={index}
+                    className={
+                      item.status === "belum"
+                        ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
+                        : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
+                    }
+                  >
+                    {item.status}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-col mx-4">
-              {item.map((item, index) => (
-
-                 <div
-           key={index}
-             className={
-             item.status === "belum"
-             ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
-             : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
-              }
-             >
-              {item.status}
-                 </div>
-
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
         </>
-       )
-      }
-  
+      );
+    }
+
     const groupedData = groupDataByAge(data);
     return (
       <>
@@ -287,18 +353,16 @@ export default function Pofile() {
             </div>
             <div className="flex flex-col mx-4">
               {item.map((item, index) => (
-
-                 <div
-           key={index}
-             className={
-             statusVaksin === "belum"
-             ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
-             : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
-              }
-             >
-              {statusVaksin}
-                 </div>
-
+                <div
+                  key={index}
+                  className={
+                    statusVaksin === "belum"
+                      ? "text-warning-500 bg-warning-100 px-6 my-2 rounded-full font-bold"
+                      : "text-green-500 bg-green-100 px-6 my-2 rounded-full font-bold"
+                  }
+                >
+                  {statusVaksin}
+                </div>
               ))}
             </div>
           </div>
@@ -331,7 +395,6 @@ export default function Pofile() {
                     </>
                   );
                 })}
-
                 {/* <SwiperSlide key={2} style={{ width: "50%" }}>
                   <Link href="#">
                     <a className="h-full text-center -top-6">
@@ -381,25 +444,31 @@ export default function Pofile() {
               <div className="basis-2/6">
                 <div className="text-center my-2 ml-2 border-r-2 border-theme">
                   <p>Tinggi Badan</p>
-                  <p className="mt-2">
-                    52 <sub>cm</sub>
-                  </p>
+                <p className="mt-2">
+                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].tinggi_badan} ${"\u00A0"}cm`
+                : 0}
+                </p>
                 </div>
               </div>
               <div className="basis-2/6">
                 <div className="text-center my-2 border-r-2 border-theme">
                   <p>Berat Badan</p>
                   <p className="mt-2">
-                    10 <sub>kg</sub>
-                  </p>
+                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].berat_badan} ${"\u00A0"}kg`
+                : 0}
+                </p>
                 </div>
               </div>
               <div className="basis-2/6">
                 <div className="text-center my-2">
                   <p>Lingkar Kepala</p>
                   <p className="mt-2">
-                    52 <sub>cm</sub>
-                  </p>
+                {kids && kids.anak_tumbuh_kembangs && kids.anak_tumbuh_kembangs.length > 0
+                ? `${kids.anak_tumbuh_kembangs.slice(-1)[0].lingkar_kepala} ${"\u00A0"}cm`
+                : 0}
+                </p>
                 </div>
               </div>
             </div>
@@ -464,7 +533,7 @@ export default function Pofile() {
             <Spin />
           </div>
         ) : ( */}
-            <Link href={"/daftar_vaksin"}>
+            <Link href={`/daftar_vaksin/?user=${query}`}>
               <button
                 type="submit"
                 className="bg-secondary-500 text-white font-bold block w-full text-center text-sm p-3 rounded-full"
@@ -497,38 +566,44 @@ export default function Pofile() {
               className="w-2/4 bg-secondary-500 rounded-full hover:bg-white hover:text-secondary-500 hover:border-secondary-500 border-solid border border-secondary-500"
               onClick={handleOk}
             >
-              Update{" "}
+              Sudah{" "}
             </Button>,
           ]}
         >
           <div className="flex flex-col my-2">
             <p className="text-xl font-bold">
-              Data Tumbuh Kembang Anak <p className="text-secondary-500">0 Bulan</p>
+              Data Tumbuh Kembang Anak <p className="text-secondary-500">{detailAge(kids?.dateofbirth)}</p>
             </p>
           </div>
           <div className="flex flex-row cursor-pointer justify-content-center border-solid border-2 border-theme rounded-md my-4">
             <div className="basis-2/6">
               <div className="text-center my-2 ml-2 border-r-2 border-theme">
                 <p>Tinggi Badan</p>
-                <p className="mt-2">
-                  52 <sub>cm</sub>
-                </p>
+                <div className="mt-2">
+                  <form>
+                    <input type="number" id="tinggiBadan" name="tinggiBadan" className="focus:ring-blue-500 w-20" placeholder="160 cm" required/>
+                  </form>
+                </div>
               </div>
             </div>
             <div className="basis-2/6">
               <div className="text-center my-2 border-r-2 border-theme">
                 <p>Berat Badan</p>
-                <p className="mt-2">
-                  10 <sub>kg</sub>
-                </p>
+                <div className="mt-2">
+                  <form>
+                    <input type="number" id="beratBadan" name="beratBadan" className="focus:ring-blue-500 w-20" placeholder="10 kg" required/>
+                  </form>
+                </div>
               </div>
             </div>
             <div className="basis-2/6">
               <div className="text-center my-2">
                 <p>Lingkar Kepala</p>
-                <p className="mt-2">
-                  52 <sub>cm</sub>
-                </p>
+                <div className="mt-2">
+                  <form>
+                    <input type="number" id="lingkarKepala" name="lingkarKepala" className="focus:ring-blue-500 w-20" placeholder="56 cm" required/>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -538,6 +613,7 @@ export default function Pofile() {
         </Modal>
         <Footer />
       </Layout>
+      <OtpModal data={data} visible={otpModal} form={form} setVisible={()=>setOtpModal(false)} fecthUser={()=>fetchUser(query)} />
     </>
   );
 }

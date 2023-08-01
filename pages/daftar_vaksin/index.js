@@ -9,6 +9,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Skeleton from "react-loading-skeleton";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRouter } from "next/router";
+import axios from "axios";
+
 import {
   Table,
   Tabs,
@@ -34,7 +37,42 @@ export default function Pofile() {
   const [articles, setArticles] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [data,setData]=useState()
+  const [vaksin,setVaksin]=useState()
+  const [anak,setAnak] = useState(1)
   const { Option } = Select;
+  const router = useRouter();
+
+
+  const userId = router.query.user;
+  useEffect(() => {
+    // onInit();
+    fetchUser(userId);
+    fetchVaksin();
+  }, []);
+
+  const fetchUser = async (userId) => {
+    console.log(userId)
+    try {
+      if (userId) {
+        const resp = await axios.get(`http://localhost:5000/api/v1/unique-user/${userId}`);
+        const respJson = resp.data;
+        setData(respJson.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+   const fetchVaksin = async () => {
+    try {
+      const resp = await axios.get("http://localhost:5000/api/v1/vaksins");
+      const respJson = resp.data;
+      setVaksin(resp.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
@@ -47,7 +85,14 @@ export default function Pofile() {
       .required("Required"),
     dateofbirth: Yup.string().required("Required"),
   });
+ 
+  
   const onSubmitForm = async (values) => {
+    console.log(values)
+    // console.log(data.anak)
+    // console.log(vaksin)
+  
+
     // var phone = t("phone_code") + values.phone;
     // var dt = {
     //   name: values.name,
@@ -83,6 +128,92 @@ export default function Pofile() {
     //   router.push(`/step/surat?phone=${values.phone}&uid=${res.uid}`);
     // }
   };
+
+
+  const [selectedVaksin, setSelectedVaksin] = useState();
+  const SelectComponentVaksin = ({ vaksin,index, onVaksinChange }) => {
+  let vlv = ""
+
+
+  const handleVaksinChange = (value) => {
+      setSelectedVaksin(value);
+      onVaksinChange(index, value);     
+   };
+
+  return (
+    <Select
+      value={selectedVaksin}
+      placeholder="select one vaksin"
+      className="select-after"
+      onChange={handleVaksinChange}
+    >
+      {vaksin &&
+        vaksin.map((item, idx) => {
+          return (
+            <Option key={idx} value={item.namevaksin}>
+              {item.namevaksin}
+            </Option>
+          );
+        })}
+    </Select>
+  );
+};
+console.log(selectedVaksin,"ini vaksin")
+
+const getValue = (param) =>{
+  return param
+}
+
+const SelectComponentName = ({ data, index, onNameChange }) => {
+  const [selectedName, setSelectedName] = useState(""); 
+  const [vln, setVln] = useState();
+  let nama = ""
+
+
+  const handleNameChange =(value) => {
+    onNameChange(index, value);
+    setVln(index)
+  };
+  console.log(vln,"ini bagian sini")
+  console.log(nama)
+  return (
+    <div>
+      <Select
+        value={nama}
+        placeholder="select kids name"
+        onChange={handleNameChange}
+        className="select-after"
+      >
+        {data &&
+          data?.anak.map((item) => {
+            return(
+              <>
+              <Option value={item.name}>{item.name}</Option>;
+              </>
+            ) 
+          })}
+      </Select>
+    </div>
+  );
+};
+
+const [selectedData, setSelectedData] = useState([]);
+
+  const handleNameChange = (index, name) => {
+    const newData = [...selectedData];
+    newData[index] = { ...(newData[index] || {}), name };
+    setSelectedData(newData);
+  };
+
+  const handleVaksinChange = (index, vaksin) => {
+    const newData = [...selectedData];
+    newData[index] = { ...(newData[index] || {}), vaksin };
+    setSelectedData(newData);
+  };
+  console.log(selectedData)
+
+
+
 
   return (
     <>
@@ -148,7 +279,7 @@ export default function Pofile() {
                     </label>
                     <div className="mt-1 relative">
                       <Field
-                        name="phone"
+                        name="address"
                         className="block w-full py-2  px-3 rounded-lg text-sm text-gray-700 bg-white border border-gray-200 overflow-hidden focus:outline-none focus:border-primary-700 focus:ring-primary-700 focus:ring-1"
                         type="text"
                         placeholder={""}
@@ -210,6 +341,7 @@ export default function Pofile() {
                     </div>
                   ) : (
                     <button
+                    onClick={onSubmitForm}
                       type="submit"
                       className="bg-secondary-500 text-white font-bold block w-full text-center text-sm p-3 rounded-full"
                     >
@@ -226,33 +358,41 @@ export default function Pofile() {
             <div>
               <p className="text-xl font-bold">Data Anak</p>
             </div>
-            <div className="">
+            <div className="flex gap-1">
               <button
+                onClick={()=>setAnak(anak + 1)}
                 type="button"
                 className="bg-secondary-100 text-secondary-500 font-bold  text-center text-sm px-2 py-1 rounded-full"
               >
                 Tambah +
               </button>
+              <button
+                onClick={()=>setAnak(anak - 1)}
+                type="button"
+                className="bg-secondary-100 text-secondary-500 font-bold  text-center text-sm px-2 py-1 rounded-full"
+              >
+                Kurang -
+              </button>
             </div>
           </div>
-          <div className="flex flex-col bg-theme p-5 rounded-xl">
-            <div className="mb-5">
-              <label className="block mb-1 font-bold text-gray-700 text-sm">
-                Nama Anak
-              </label>
-              <Select defaultValue="1" className="select-after">
-                <Option value="1">Nama anak</Option>
-              </Select>
-            </div>
-            <div className="mb-5">
-              <label className="block mb-1 font-bold text-gray-700 text-sm">
-                Jenis Vaksin
-              </label>
-              <Select defaultValue="1" className="select-after">
-                <Option value="1">Nama Vaksin</Option>
-              </Select>
-            </div>
+          {/*  */}
+         {[...Array(parseInt(anak))].map((_, index) => (
+        <div key={index} className="flex flex-col bg-theme p-5 rounded-xl">
+          <div className="mb-5">
+            <label className="block mb-1 font-bold text-gray-700 text-sm">
+              Nama Anak {index + 1}
+            </label>
+            <SelectComponentName data={data} index={index} onNameChange={handleNameChange} />
           </div>
+          <div className="mb-5">
+            <label className="block mb-1 font-bold text-gray-700 text-sm">
+              Jenis Vaksin
+            </label>
+           <SelectComponentVaksin vaksin={vaksin} index={index} onVaksinChange={handleVaksinChange}/>
+          </div>
+        </div>
+      ))}         
+          {/*  */}
           <div className="flex mt-10 bg-white">
             <div className="w-full bg-gradient-to-r from-primary-700 to-primary-600 rounded-xl p-5">
               <div className="flex justify-center">
