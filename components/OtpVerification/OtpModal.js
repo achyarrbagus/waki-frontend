@@ -63,7 +63,7 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/tumbuh-kembang", {
+      const response = await fetch(`${process.env.URL_API}/api/v1/tumbuh-kembang`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

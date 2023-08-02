@@ -3,8 +3,10 @@ import { Table, Tabs, Modal, Button, Form } from "antd";
 import react from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const OtpVaksinasi = ({ visible, setVisible, form, data }) => {
+  const router = useRouter();
   const cooldownTime = 120000;
   const [cooldown, setCooldown] = useState(false);
   const [response, setResponse] = useState();
@@ -15,7 +17,7 @@ const OtpVaksinasi = ({ visible, setVisible, form, data }) => {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/login-phone/?phone=${data.phone}`, {
+      const response = await fetch(`${process.env.URL_API}/api/v1/login-phone/?phone=${data.phone}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,6 +83,7 @@ const OtpVaksinasi = ({ visible, setVisible, form, data }) => {
       const responseData = await response.json();
       setResponse(responseData);
       window.alert("Updated Data success");
+      router.push(`/step/surat?phone=${values.phone}&uid=${res.uid}`);
       setVisible(false);
 
       // Hapus window.location.reload() jika tidak diperlukan atau jika ingin memproses respons server lebih lanjut.

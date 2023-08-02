@@ -65,7 +65,7 @@ export default function Pofile() {
 
   const fetchVaksin = async () => {
     try {
-      const resp = await axios.get("http://localhost:5000/api/v1/vaksins");
+      const resp = await axios.get(`${process.env.URL_API}/vaksins`);
       const respJson = resp.data;
       setVaksin(resp.data.data);
     } catch (error) {
@@ -76,7 +76,7 @@ export default function Pofile() {
   const fetchUser = async (qy) => {
     try {
       if (qy) {
-        const resp = await axios.get(`http://localhost:5000/api/v1/unique-user/${query}`);
+        const resp = await axios.get(`${process.env.URL_API}/unique-user/${query}`);
         const respJson = resp.data;
         setData(respJson.data);
         setKids(respJson.data.anak.slice(-1)[0]);
@@ -165,7 +165,7 @@ export default function Pofile() {
 
   const handleOtp = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/login-phone/?phone=${data.phone}`, {
+      const response = await fetch(`${process.env.URL_API}/login-phone/?phone=${data.phone}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
